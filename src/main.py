@@ -10,18 +10,14 @@ import decision_tree
 import calibration_plot
 
 
+
 # Call functions / instanciate objects from the .py files
 def main():
-
-    # PART 1: Instanciate etl, saving the two datasets in `./data/`
-
-    # PART 2: Call functions/instanciate objects from preprocessing
-
-    # PART 3: Call functions/instanciate objects from logistic_regression
-
-    # PART 4: Call functions/instanciate objects from decision_tree
-
-    # PART 5: Call functions/instanciate objects from calibration_plot
+    etl.etl()
+    df_arrests = preprocessing.preprocessing()
+    df_arrests_train, df_arrests_test, gs_cv_lr = logistic_regression.logistic_regression(df_arrests)
+    df_arrests_test, gs_cv_dt = decision_tree.decision_tree(df_arrests_train, df_arrests_test)
+    calibration_plot.evaluate_models(df_arrests_test)
 
 
 if __name__ == "__main__":
